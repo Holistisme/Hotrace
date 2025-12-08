@@ -6,15 +6,22 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:02:23 by aheitz            #+#    #+#             */
-/*   Updated: 2025/12/08 16:04:42 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/12/08 16:37:19 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "database.h"
+#include "get_next_line.h"
+#include <stdbool.h>
 
 /* ************************************************************************** */
 
-static t_database *fill_database()
+static inline void		free_data(t_database *data);
+static inline t_database	*add_data(void);
+
+/* ************************************************************************** */
+
+t_database	*fill_database(void)
 {
 	t_database	*db;
 	t_database	*prev;
@@ -23,40 +30,63 @@ static t_database *fill_database()
 	db = NULL;
 	while (true)
 	{
-		new_data = ft_calloc(1, sizeof(t_database));
-		new_data->name = get_next_line(STDIN_FILENO);
-		new_data->value = get_next_line(STDIN_FILENO);
-		new_data->next = NULL;
-		if (ft_strlen(new_data->name, '\0') == 1
-			|| ft_strlen(new_data->value, '\0') == 1)
+		new_data = add_data();
+		if (!new_data)
 		{
-			free(new_data->name);
-			free(new_data->value);
-			free(new_data);
+			get_next_line(-1);
 			break ;
 		}
+			
 		if (!db)
 		{
 			db = new_data;
 			prev = db;
+			continue ;
 		}
-		else
-		{
-			prev->next = new_data;
-			prev = new_data;
-		}
+		prev->next = new_data;
+		prev = new_data;
 	}
 	return (db);
 }
 
 /* ************************************************************************** */
 
-void free_db(t_database *db)
+static inline t_database	*add_data(void)
 {
-	
+	t_database	*new;
+
+	new = ft_calloc(1, sizeof(t_database));
+	new->name = get_next_line(STDIN_FILENO);
+	new->value = get_next_line(STDIN_FILENO);
+	new->next = NULL;
+	if (ft_strlen(new->name, '\0') == 1
+		|| ft_strlen(new->value, '\0') == 1)
+	{
+		free_data(new);
+		new = NULL;
+	}
+	return (new);
 }
 
-void	free_data(t_database *data)
+/* ************************************************************************** */
+
+void	free_db(t_database *db)
+{
+	t_database	*current;
+	t_database	*next;
+
+	current = db;
+	while (current)
+	{
+		next = current->next;
+		free_data(current);
+		current = next;
+	}
+}
+
+/* ************************************************************************** */
+
+static inline void	free_data(t_database *data)
 {
 	if (data)
 	{
@@ -67,3 +97,5 @@ void	free_data(t_database *data)
 		free(data);
 	}
 }
+
+/* ************************************************************************** */

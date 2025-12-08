@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 15:12:08 by aheitz            #+#    #+#             */
-/*   Updated: 2025/12/08 16:01:43 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/12/08 16:28:34 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,49 +15,14 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-static t_database *fill_database();
 static void printf_database(t_database *db);
 
 int	main(void)
 {
 	t_database *db = fill_database();
 	printf_database(db);
+	free_db(db);
 	return (0);
-}
-
-static t_database *fill_database()
-{
-	t_database	*db;
-	t_database	*prev;
-	t_database	*new_data;
-
-	db = NULL;
-	while (true)
-	{
-		new_data = ft_calloc(1, sizeof(t_database));
-		new_data->name = get_next_line(STDIN_FILENO);
-		new_data->value = get_next_line(STDIN_FILENO);
-		new_data->next = NULL;
-		if (ft_strlen(new_data->name, '\0') == 1
-			|| ft_strlen(new_data->value, '\0') == 1)
-		{
-			free(new_data->name);
-			free(new_data->value);
-			free(new_data);
-			break ;
-		}
-		if (!db)
-		{
-			db = new_data;
-			prev = db;
-		}
-		else
-		{
-			prev->next = new_data;
-			prev = new_data;
-		}
-	}
-	return (db);
 }
 
 static void printf_database(t_database *db)

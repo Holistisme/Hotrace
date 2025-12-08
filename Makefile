@@ -6,7 +6,7 @@
 #    By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/08 15:10:38 by aheitz            #+#    #+#              #
-#    Updated: 2025/12/08 16:00:27 by aheitz           ###   ########.fr        #
+#    Updated: 2025/12/08 16:29:24 by aheitz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ MAKEFLAGS += --no-print-directory -s
 
 INCLUDE = include
 
-SRC       = src/main.c        \
+SRC = src/main.c              \
+	src/database.c            \
 	gnl/get_next_line.c       \
 	gnl/get_next_line_utils.c \
 

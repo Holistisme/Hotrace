@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:26:58 by luflores          #+#    #+#             */
-/*   Updated: 2025/12/08 15:43:24 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/12/08 16:43:40 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
-		if (buf[fd])
-			free(buf[fd]);
+		if (buf[STDIN_FILENO])
+			free(buf[STDIN_FILENO]); //TODO: Not very legal
 		buf[fd] = NULL;
 		return (NULL);
 	}
