@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luflores <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:26:58 by luflores          #+#    #+#             */
-/*   Updated: 2025/11/06 15:27:00 by luflores         ###   ########.fr       */
+/*   Updated: 2025/12/08 15:43:24 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,38 +102,3 @@ char	*get_next_line(int fd)
 	line = lookforline(&buf[fd]);
 	return (line);
 }
-
-// int main(void)
-// {
-// 	int fd;
-// 	int fd3;
-// 	fd = open("get_next_line.c", O_RDONLY);
-// 	char *line1 = ft_calloc(1,1);
-// 	while (line1 != NULL)
-// 	{
-// 		if (line1 != NULL)
-// 			free(line1);
-// 		line1 = (get_next_line(fd));
-// 		printf("line: %s", line1);	
-// 	}
-// 	if (line1)
-// 		free(line1);
-// 	return(0);
-// }
-
-// int main(void)
-// {
-// 	int fd;
-// 	fd = open("get_next_line.c", O_RDONLY);
-// 	char *line1 = ft_calloc(1,1);
-// 	while (line1 != NULL)
-// 	{
-// 		if (line1 != NULL)
-// 			free(line1);
-// 		line1 = (get_next_line(fd));
-// 		printf("line: %s", line1);	
-// 	}
-// 	if (line1)
-// 		free(line1);
-// 	return(0);
-// }
