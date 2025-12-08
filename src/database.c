@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   database.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/08 15:12:08 by aheitz            #+#    #+#             */
-/*   Updated: 2025/12/08 16:01:43 by aheitz           ###   ########.fr       */
+/*   Created: 2025/12/08 16:02:23 by aheitz            #+#    #+#             */
+/*   Updated: 2025/12/08 16:04:42 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
 #include "database.h"
-#include <stdio.h>
-#include <stdbool.h>
 
-static t_database *fill_database();
-static void printf_database(t_database *db);
-
-int	main(void)
-{
-	t_database *db = fill_database();
-	printf_database(db);
-	return (0);
-}
+/* ************************************************************************** */
 
 static t_database *fill_database()
 {
@@ -60,14 +49,21 @@ static t_database *fill_database()
 	return (db);
 }
 
-static void printf_database(t_database *db)
-{
-	t_database *current = db;
+/* ************************************************************************** */
 
-	while (current)
+void free_db(t_database *db)
+{
+	
+}
+
+void	free_data(t_database *data)
+{
+	if (data)
 	{
-		printf("Name: %s", current->name);
-		printf("Value: %s", current->value);
-		current = current->next;
+		if (data->name)
+			free(data->name);
+		if (data->value)
+			free(data->value);
+		free(data);
 	}
 }

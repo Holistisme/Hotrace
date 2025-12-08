@@ -6,7 +6,7 @@
 #    By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/08 15:10:38 by aheitz            #+#    #+#              #
-#    Updated: 2025/12/08 15:22:00 by aheitz           ###   ########.fr        #
+#    Updated: 2025/12/08 16:00:27 by aheitz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ MAKEFLAGS += --no-print-directory -s
 
 INCLUDE = include
 
-FRAMEWORK = framework
 SRC       = src/main.c        \
 	gnl/get_next_line.c       \
 	gnl/get_next_line_utils.c \
