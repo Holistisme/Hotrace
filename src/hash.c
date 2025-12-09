@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   database.h                                         :+:      :+:    :+:   */
+/*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/08 15:47:19 by aheitz            #+#    #+#             */
-/*   Updated: 2025/12/08 16:28:18 by aheitz           ###   ########.fr       */
+/*   Created: 2025/12/08 17:09:24 by aheitz            #+#    #+#             */
+/*   Updated: 2025/12/09 13:28:17 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATABASE_H
-# define DATABASE_H
+#include "hotrace.h"
 
-typedef struct s_database
+// TODO: Improve hash function
+
+/* ************************************************************************** */
+
+unsigned long	hash( char *value)
 {
-	char				*name;
-	char				*value;
-	struct s_database	*next;
-}	t_database;
+	char			*s;
+	unsigned long	hash;
 
-t_database	*fill_database(void);
-void	free_db(t_database *db);
-
-#endif
+	hash = 1;
+	s = value;
+	while (*s)
+	{
+		hash *= *s;
+		s++;
+	}
+	return (hash);
+}
 
 /* ************************************************************************** */

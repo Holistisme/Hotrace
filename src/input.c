@@ -1,0 +1,103 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/08 21:50:00 by aheitz            #+#    #+#             */
+/*   Updated: 2025/12/09 11:41:01 by aheitz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "hotrace.h"
+
+static char		*update_input(char *input, char c,
+					size_t *len, size_t *capacity);
+
+static inline char	*realloc_memory(char *old, size_t old_size);
+static inline void	write_read_error(const char *error);
+
+//TODO: Double write can be optimized with a single write call
+
+/* ************************************************************************** */
+
+char	*read_next_input(void)
+{
+	char	buffer[1];
+	char	*input;
+	ssize_t	read_bytes;
+	size_t	len;
+	size_t	capacity;
+
+	len = 0;
+	capacity = 32;
+	input = set_memory(capacity, sizeof(char));
+	while (input)
+	{
+		read_bytes = read(STDIN_FILENO, buffer, 1);
+		if (read_bytes < 0)
+		{
+			write_read_error(NULL);
+			if (input)
+				free(input);
+			return (NULL);
+		}
+		if (read_bytes == 0 || buffer[0] == '\n')
+			break ;
+		input = update_input(input, buffer[0], &len, &capacity);
+	}
+	return (input);
+}
+
+/* ************************************************************************** */
+
+static char	*update_input(char *input, char c, size_t *len, size_t *capacity)
+{
+	if (*len + 1 >= *capacity)
+	{
+		*capacity += 32;
+		input = realloc_memory(input, *len);
+		if (!input)
+		{
+			write_read_error("Memory allocation failed");
+			return (NULL);
+		}
+	}
+	input[*len] = c;
+	(*len)++;
+	return (input);
+}
+
+static inline char	*realloc_memory(char *old, size_t old_size)
+{
+	char	*new;
+	size_t	i;
+
+	new = set_memory(old_size + 32, sizeof(char));
+	i = 0;
+	while (i < old_size)
+	{
+		new[i] = old[i];
+		++i;
+	}
+	free(old);
+	return (new);
+}
+
+static inline void	write_read_error(const char *error)
+{
+	write(STDERR_FILENO, "ERROR: ", 8);
+	if (error)
+	{
+		write(STDERR_FILENO, error, get_length(error));
+		write(STDERR_FILENO, "\n", 1);
+	}
+	else
+	{
+		write(STDERR_FILENO, strerror(errno), get_length(strerror(errno)));
+		write(STDERR_FILENO, "\n", 1);
+	}
+}
+
+/* ************************************************************************** */
