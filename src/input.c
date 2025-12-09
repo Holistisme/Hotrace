@@ -60,7 +60,7 @@ static char	*update_input(char *input, char c, size_t *len, size_t *capacity)
 		input = realloc_memory(input, *len);
 		if (!input)
 		{
-			write_read_error("Memory allocation failed");
+			write_read_error("Memory allocation failed\n");
 			return (NULL);
 		}
 	}
@@ -89,10 +89,7 @@ static inline void	write_read_error(const char *error)
 {
 	write(STDERR_FILENO, "ERROR: ", 8);
 	if (error)
-	{
 		write(STDERR_FILENO, error, get_length(error));
-		write(STDERR_FILENO, "\n", 1);
-	}
 	else
 	{
 		write(STDERR_FILENO, strerror(errno), get_length(strerror(errno)));

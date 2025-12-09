@@ -18,19 +18,6 @@ static void	delete_db(t_bucket *db, const size_t size);
 
 /* ************************************************************************** */
 
-// TODO: To delete
-
-#include <sys/time.h>
-
-double now(void)
-{
-    struct timeval tv;
-    gettimeofday(&tv, NULL);
-    return tv.tv_sec + tv.tv_usec / 1e6;
-}
-
-// TODO: To delete
-
 int	main(void)
 {
 	t_bucket	*db;
@@ -44,15 +31,13 @@ int	main(void)
 	if (new_db_size < 1024)
 		new_db_size = 1024;
 	db = set_db(db, new_db_size, db_size);
-	double start = now(); // TODO: To delete
 	research(db, new_db_size);
-	double end = now(); // TODO: To delete
 	fprintf(stderr, "Time taken for research: %f seconds\n", end - start);
 	delete_db(db, new_db_size);
 	return (EXIT_SUCCESS);
 }
 
-static void	delete_db(t_bucket *db, const size_t size)
+static void	delete_db(t_bucket *db, const size_st size)
 {
 	size_t	i;
 

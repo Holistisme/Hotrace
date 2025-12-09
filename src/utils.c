@@ -22,7 +22,6 @@ void	*set_memory(const size_t count, const size_t size)
 
 	if (total_size / size != count)
 		return (NULL);
-
 	ptr = malloc(total_size);
 	i = 0;
 	if (ptr)
