@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 15:12:08 by aheitz            #+#    #+#             */
-/*   Updated: 2025/12/10 01:21:47 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/12/10 03:14:05 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ static void	delete_db(t_bucket *db, const size_t size);
 
 /* ************************************************************************** */
 
+/**
+ * @brief Main function of the Hotrace program.
+ *
+ * @return int Exit status of the program.
+ */
 int	main(void)
 {
 	t_bucket	*db;
@@ -34,6 +39,12 @@ int	main(void)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * @brief Deletes the database and frees allocated memory.
+ *
+ * @param db Pointer to the database array.
+ * @param size Size of the database array.
+ */
 static void	delete_db(t_bucket *db, const size_t size)
 {
 	size_t	i;
@@ -46,6 +57,11 @@ static void	delete_db(t_bucket *db, const size_t size)
 	free(db);
 }
 
+/**
+ * @brief Deletes a single bucket and frees its allocated memory.
+ *
+ * @param bucket The bucket to be deleted.
+ */
 void	delete_bucket(t_bucket bucket)
 {
 	if (bucket.key)

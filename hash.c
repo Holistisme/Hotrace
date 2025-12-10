@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 17:09:24 by aheitz            #+#    #+#             */
-/*   Updated: 2025/12/10 00:52:53 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/12/10 03:18:17 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 
 /* ************************************************************************** */
 
+/**
+ * @brief Computes the hash of a given string using FNV-1a algorithm.
+ *
+ * @param value Input string to hash.
+ * @return unsigned long Computed hash value.
+ */
 unsigned long	hash(char *value)
 {
 	unsigned long	hash;

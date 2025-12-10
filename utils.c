@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:27:14 by aheitz            #+#    #+#             */
-/*   Updated: 2025/12/09 23:27:43 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/12/10 03:23:08 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 /* ************************************************************************** */
 
+/**
+ * @brief Set the memory object.
+ *
+ * @param count Number of elements to allocate.
+ * @param size Size of each element.
+ * @return void* Pointer to the allocated memory, or NULL on failure.
+ */
 void	*set_memory(const size_t count, const size_t size)
 {
 	unsigned char	*ptr;
@@ -30,6 +37,12 @@ void	*set_memory(const size_t count, const size_t size)
 	return (ptr);
 }
 
+/**
+ * @brief Get the length object.
+ *
+ * @param str Input string.
+ * @return size_t Length of the string.
+ */
 inline size_t	get_length(const char *str)
 {
 	size_t	len;

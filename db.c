@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:20:44 by aheitz            #+#    #+#             */
-/*   Updated: 2025/12/10 02:43:02 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/12/10 03:19:31 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@ static inline void	fill_bucket(t_bucket *bucket, char *key, char *value);
 
 /* ************************************************************************** */
 
+/**
+ * @brief Set the db object.
+ *
+ * @param db Pointer to the original database array.
+ * @param size New size of the database array.
+ * @param original_size Size of the original database array.
+ * @return t_bucket* Pointer to the newly created database array.
+ */
 t_bucket	*set_db(t_bucket *db, const size_t size, const size_t original_size)
 {
 	t_bucket		*new;
@@ -45,6 +53,13 @@ t_bucket	*set_db(t_bucket *db, const size_t size, const size_t original_size)
 	return (new);
 }
 
+/**
+ * @brief Fills a bucket with the given key and value, freeing duplicated data.
+ *
+ * @param bucket Pointer to the bucket to fill.
+ * @param key Pointer to the key string.
+ * @param value Pointer to the value string.
+ */
 static inline void	fill_bucket(t_bucket *bucket, char *key, char *value)
 {
 	if (bucket->key)

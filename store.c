@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:02:23 by aheitz            #+#    #+#             */
-/*   Updated: 2025/12/10 02:03:42 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/12/10 03:22:06 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ static inline t_bucket	*add_db_memory(t_bucket *db, const size_t cap);
 
 /* ************************************************************************** */
 
+/**
+ * @brief Stores input key-value pairs into a dynamically allocated database.
+ *
+ * @param size Pointer to store the number of stored key-value pairs.
+ * @return t_bucket* Pointer to the dynamically allocated database array.
+ */
 t_bucket	*store_input(size_t *size)
 {
 	t_bucket	*db;
@@ -50,6 +56,11 @@ t_bucket	*store_input(size_t *size)
 
 /* ************************************************************************** */
 
+/**
+ * @brief Reads a key-value pair from input and returns it as a t_bucket.
+ *
+ * @return t_bucket The read key-value pair.
+ */
 static inline t_bucket	add_bucket(void)
 {
 	t_bucket	new;
@@ -62,6 +73,13 @@ static inline t_bucket	add_bucket(void)
 	return (new);
 }
 
+/**
+ * @brief Doubles the size of the database array and copies existing entries.
+ *
+ * @param db Pointer to the current database array.
+ * @param cap Current capacity of the database array.
+ * @return t_bucket* Pointer to the newly allocated database array.
+ */
 static inline t_bucket	*add_db_memory(t_bucket *db, const size_t cap)
 {
 	t_bucket	*new_db;

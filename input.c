@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 21:50:00 by aheitz            #+#    #+#             */
-/*   Updated: 2025/12/10 00:43:54 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/12/10 03:16:57 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ static inline void	write_read_error(const char *error);
 
 /* ************************************************************************** */
 
+/**
+ * @brief Reads the next line of input from standard input.
+ *
+ * @return char* Pointer to the read line (dynamically allocated), NULL on error.
+ */
 char	*read_next_input(void)
 {
 	char	buffer[1];
@@ -50,6 +55,15 @@ char	*read_next_input(void)
 
 /* ************************************************************************** */
 
+/**
+ * @brief Updates input string with new character, reallocating memory if needed.
+ *
+ * @param input Current input string.
+ * @param c Character to append.
+ * @param len Pointer to current length of the input string.
+ * @param capacity Pointer to current capacity of the input string.
+ * @return char* Updated input string, or NULL on allocation failure.
+ */
 static char	*update_input(char *input, char c, size_t *len, size_t *capacity)
 {
 	if (*len + 1 >= *capacity)
@@ -67,6 +81,13 @@ static char	*update_input(char *input, char c, size_t *len, size_t *capacity)
 	return (input);
 }
 
+/**
+ * @brief Reallocates memory for the input string to increase its capacity.
+ *
+ * @param old Pointer to the old input string.
+ * @param old_size Current size of the old input string.
+ * @return char* Pointer to the newly allocated input string.
+ */
 static inline char	*realloc_memory(char *old, size_t old_size)
 {
 	char	*new;
@@ -83,6 +104,11 @@ static inline char	*realloc_memory(char *old, size_t old_size)
 	return (new);
 }
 
+/**
+ * @brief Writes an error message to standard error.
+ *
+ * @param error Error message to write, or NULL to use strerror(errno).
+ */
 static inline void	write_read_error(const char *error)
 {
 	write(STDERR_FILENO, "ERROR: ", 8);
