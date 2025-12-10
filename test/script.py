@@ -10,7 +10,7 @@ def randstr():
 
 keep_keys = []
 
-with open("tmp/hotrace_test.txt", "w") as f:
+with open("test/hotrace.in", "w") as f:
     for i in range(N):
         key = randstr()
         value = randstr()
