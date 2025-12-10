@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 15:12:08 by aheitz            #+#    #+#             */
-/*   Updated: 2025/12/09 13:36:28 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/12/10 01:21:47 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,14 @@ int	main(void)
 	db = store_input(&db_size);
 	if (db == NULL)
 		return (EXIT_FAILURE);
-	new_db_size = db_size * 2;
-	if (new_db_size < 1024)
-		new_db_size = 1024;
+	new_db_size = db_size * 5;
 	db = set_db(db, new_db_size, db_size);
 	research(db, new_db_size);
-	fprintf(stderr, "Time taken for research: %f seconds\n", end - start);
 	delete_db(db, new_db_size);
 	return (EXIT_SUCCESS);
 }
 
-static void	delete_db(t_bucket *db, const size_st size)
+static void	delete_db(t_bucket *db, const size_t size)
 {
 	size_t	i;
 

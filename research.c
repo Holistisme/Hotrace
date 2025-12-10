@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 17:08:49 by aheitz            #+#    #+#             */
-/*   Updated: 2025/12/09 13:36:57 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/12/10 02:07:39 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 static void		search_db(const t_bucket *db, char *key, const size_t db_size);
 
-static inline bool	is_key(const char *search, const char *occurrence);
 static inline void	write_value_found(const char *value);
 static inline void	write_value_not_found(const char *key);
-
-//TODO: Double write can be optimized with a single write call
 
 /* ************************************************************************** */
 
@@ -57,7 +54,7 @@ static void	search_db(const t_bucket *db, char *key, const size_t db_size)
 	}
 }
 
-static inline bool	is_key(const char *search, const char *occurrence)
+inline bool	is_key(const char *search, const char *occurrence)
 {
 	size_t	i;
 
@@ -77,8 +74,8 @@ static inline void	write_value_found(const char *value)
 
 static inline void	write_value_not_found(const char *key)
 {
-	write(STDERR_FILENO, key, get_length(key));
-	write(STDERR_FILENO, ": Not found.\n", 14);
+	write(STDOUT_FILENO, key, get_length(key));
+	write(STDOUT_FILENO, ": Not found.\n", 14);
 }
 
 /* ************************************************************************** */

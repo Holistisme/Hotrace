@@ -1,7 +1,7 @@
 import random
 import string
 
-N = 40000
+N = 100000
 M = 10000
 Q_KEEP = True
 
@@ -10,14 +10,14 @@ def randstr():
 
 keep_keys = []
 
-with open("hotrace_test.txt", "w") as f:
+with open("tmp/hotrace_test.txt", "w") as f:
     for i in range(N):
         key = randstr()
         value = randstr()
         f.write(key + "\n")
         f.write(value + "\n")
 
-        if Q_KEEP and (i % 8 == 0):
+        if Q_KEEP and (i % 2 == 0):
             keep_keys.append(key)
 
     f.write("\n")

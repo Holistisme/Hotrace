@@ -6,7 +6,7 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 21:50:00 by aheitz            #+#    #+#             */
-/*   Updated: 2025/12/09 11:41:01 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/12/10 00:43:54 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ static char		*update_input(char *input, char c,
 
 static inline char	*realloc_memory(char *old, size_t old_size);
 static inline void	write_read_error(const char *error);
-
-//TODO: Double write can be optimized with a single write call
 
 /* ************************************************************************** */
 

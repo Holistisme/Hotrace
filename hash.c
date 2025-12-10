@@ -6,27 +6,30 @@
 /*   By: aheitz <aheitz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 17:09:24 by aheitz            #+#    #+#             */
-/*   Updated: 2025/12/09 13:28:17 by aheitz           ###   ########.fr       */
+/*   Updated: 2025/12/10 00:52:53 by aheitz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hotrace.h"
 
-// TODO: Improve hash function
+/* ************************************************************************** */
+
+#define GOLDEN_RATIO 0x9E3779B185EBCA87ULL
 
 /* ************************************************************************** */
 
-unsigned long	hash( char *value)
+unsigned long	hash(char *value)
 {
-	char			*s;
 	unsigned long	hash;
+	char			*c;
 
-	hash = 1;
-	s = value;
-	while (*s)
+	hash = GOLDEN_RATIO;
+	c = value;
+	while (*c)
 	{
-		hash *= *s;
-		s++;
+		hash ^= (unsigned long)(*c++);
+		hash = (hash << 7) | (hash >> (64 - 7));
+		hash *= GOLDEN_RATIO;
 	}
 	return (hash);
 }
